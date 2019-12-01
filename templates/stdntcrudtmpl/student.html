@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="studentdetails">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        Enter Student Details
+                    </div>
+                    <div class="card-body">
+                        <form action="/student" method="POST">
+                            {% if form.errors %}
+                            <!-- Error messaging -->
+                            <div id="errors">
+                                <div class="inner">
+                                    <p>There were some errors in the information you entered. Please correct the
+                                        following:</p>
+                                    {{ form.non_field_errors }}
+                                    <ul>
+                                        {% for field in form %}
+                                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Error messaging -->
+                            {% endif %}
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label for="sname" class="col-sm-4 col-form-label">Student Id:</label>
+                                <div class="col-sm-8">
+                                    {{form.student_id}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="sname" class="col-sm-4 col-form-label">Student Name:</label>
+                                <div class="col-sm-8">
+                                    {{form.student_name}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="sname" class="col-sm-4 col-form-label">Student Email:</label>
+                                <div class="col-sm-8">
+                                    {{form.student_email}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="sname" class="col-sm-4 col-form-label">Student Contact:</label>
+                                <div class="col-sm-8">
+                                    {{form.student_contact}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="sname" class="col-sm-4 col-form-label">Student Class:</label>
+                                <div class="col-sm-8">
+                                    {{form.student_class}}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-block"
+                                    style="background-color: #488b8f;">
+                            </div>
+                            <!-- form-group// -->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
